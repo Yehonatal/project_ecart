@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import "package:flutter/material.dart";
 import "package:google_nav_bar/google_nav_bar.dart";
 
@@ -10,7 +12,6 @@ class BottomNavBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: GNav(
-          iconSize: 26,
           haptic: true,
           gap: 8,
           color: Colors.grey[400],
@@ -18,16 +19,17 @@ class BottomNavBar extends StatelessWidget {
           tabActiveBorder: Border.all(color: Colors.white),
           tabBackgroundColor: Colors.grey.shade100,
           mainAxisAlignment: MainAxisAlignment.center,
-          tabBorderRadius: 16,
+          tabBorderRadius: 18,
+          iconSize: 24,
           onTabChange: (value) => onTabChange!(value),
           tabs: const [
             GButton(
               icon: Icons.home,
-              text: "shop",
+              text: "SHOP",
             ),
             GButton(
               icon: Icons.shopping_bag_rounded,
-              text: "cart",
+              text: "CART",
             ),
           ]),
     );

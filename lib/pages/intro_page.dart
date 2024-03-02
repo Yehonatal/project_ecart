@@ -8,6 +8,9 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[300],
+        // appBar: AppBar(
+        //   backgroundColor: Colors.grey[300],
+        // ),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
