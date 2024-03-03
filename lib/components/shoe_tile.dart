@@ -3,10 +3,14 @@ import 'package:project_ecart/models/shoe.dart';
 
 class ShoeTile extends StatelessWidget {
   Shoe shoe;
-  ShoeTile({super.key, required this.shoe});
+  void Function()? onTap;
+
+  ShoeTile({super.key, required this.shoe, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    List<String> brands = shoeBuildsToBrands[shoe.type] ?? [];
+
     return Container(
       margin: const EdgeInsets.only(left: 25),
       width: 280,
@@ -20,7 +24,9 @@ class ShoeTile extends StatelessWidget {
             padding: const EdgeInsets.all(14),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.asset(shoe.imagePath),
+              child: Image.asset(
+                shoe.imagePath,
+              ),
             ),
           ),
 
@@ -49,18 +55,39 @@ class ShoeTile extends StatelessWidget {
                     )
                   ],
                 ),
-                Container(
-                  child: Icon(Icons.add),
-                  padding: EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadiusDirectional.only(
-                          topEnd: Radius.circular(14),
-                          bottomEnd: Radius.circular(14))),
-                )
+                GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                        color: Colors.blueGrey[50],
+                        borderRadius: const BorderRadiusDirectional.only(
+                            topEnd: Radius.circular(14),
+                            bottomEnd: Radius.circular(14))),
+                    child: const Icon(Icons.add),
+                  ),
+                ),
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(14),
+            child: Row(
+              children: brands
+                  .map((brand) => Container(
+                      padding: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      decoration: BoxDecoration(
+                          color: Colors.blueGrey[50],
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Text(
+                        brand,
+                        style: const TextStyle(color: Colors.blueGrey),
+                      )))
+                  .toList(),
+            ),
+          ),
+          // Brand details
 
           // price and other details
           Padding(
